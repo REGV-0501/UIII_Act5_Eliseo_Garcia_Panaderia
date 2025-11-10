@@ -1,0 +1,43 @@
+{% extends 'base.html' %}
+{% block title %}Agregar Producto{% endblock %}
+{% block content %}
+<div class="card shadow-sm p-4">
+  <h2 class="card-title mb-4">Agregar Nuevo Producto</h2>
+  <form method="post">
+    {% csrf_token %}
+    <div class="mb-3">
+      <label for="nombre" class="form-label">Nombre del Producto</label>
+      <input type="text" name="nombre" id="nombre" class="form-control" required>
+    </div>
+    <div class="mb-3">
+      <label for="descripcion" class="form-label">Descripción</label>
+      <textarea name="descripcion" id="descripcion" class="form-control"></textarea>
+    </div>
+    <div class="mb-3">
+      <label for="precio_venta" class="form-label">Precio de Venta</label>
+      <input type="number" name="precio_venta" id="precio_venta" class="form-control" step="0.01" required>
+    </div>
+    <div class="mb-3">
+      <label for="fecha_elaboracion" class="form-label">Fecha de Elaboración</label>
+      <input type="date" name="fecha_elaboracion" id="fecha_elaboracion" class="form-control" required>
+    </div>
+    <div class="mb-3">
+      <label for="fecha_vencimiento" class="form-label">Fecha de Vencimiento</label>
+      <input type="date" name="fecha_vencimiento" id="fecha_vencimiento" class="form-control" required>
+    </div>
+    <div class="mb-3">
+      <label for="receta" class="form-label">Receta Asociada</label>
+      <select class="form-select" id="receta" name="receta" required>
+        <option value="">Selecciona una receta...</option>
+        {% for receta in recetas_disponibles %}
+          <option value="{{ receta.id }}">{{ receta.nombre }}</option>
+        {% empty %}
+          <option value="" disabled>No hay recetas disponibles. Agrega algunas primero.</option>
+        {% endfor %}
+      </select>
+    </div>
+    <button type="submit" class="btn btn-primary me-2">Guardar Producto</button>
+    <a href="{% url 'ver_productos' %}" class="btn btn-secondary">Cancelar</a>
+  </form>
+</div>
+{% endblock %}

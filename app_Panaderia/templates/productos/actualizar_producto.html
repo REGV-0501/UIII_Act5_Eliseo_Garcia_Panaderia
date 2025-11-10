@@ -1,0 +1,43 @@
+{% extends 'base.html' %}
+{% block title %}Actualizar Producto{% endblock %}
+{% block content %}
+<div class="card shadow-sm p-4">
+  <h2 class="card-title mb-4">Editar Producto</h2>
+  <form method="post" action="{% url 'realizar_actualizacion_producto' producto.id %}">
+    {% csrf_token %}
+    <div class="mb-3">
+      <label for="nombre" class="form-label">Nombre del Producto</label>
+      <input type="text" name="nombre" id="nombre" value="{{ producto.nombre }}" class="form-control" required>
+    </div>
+    <div class="mb-3">
+      <label for="descripcion" class="form-label">Descripción</label>
+      <textarea name="descripcion" id="descripcion" class="form-control">{{ producto.descripcion|default:"" }}</textarea>
+    </div>
+    <div class="mb-3">
+      <label for="precio_venta" class="form-label">Precio de Venta</label>
+      <input type="number" name="precio_venta" id="precio_venta" value="{{ producto.precio_venta }}" class="form-control" step="0.01" required>
+    </div>
+    <div class="mb-3">
+      <label for="fecha_elaboracion" class="form-label">Fecha de Elaboración</label>
+      <input type="date" name="fecha_elaboracion" id="fecha_elaboracion" value="{{ producto.fecha_elaboracion|date:'Y-m-d' }}" class="form-control" required>
+    </div>
+    <div class="mb-3">
+      <label for="fecha_vencimiento" class="form-label">Fecha de Vencimiento</label>
+      <input type="date" name="fecha_vencimiento" id="fecha_vencimiento" value="{{ producto.fecha_vencimiento|date:'Y-m-d' }}" class="form-control" required>
+    </div>
+    <div class="mb-3">
+      <label for="receta" class="form-label">Receta Asociada</label>
+      <select class="form-select" id="receta" name="receta" required>
+        <option value="">Selecciona una receta...</option>
+        {% for receta in recetas_disponibles %}
+          <option value="{{ receta.id }}" {% if receta == producto.receta %}selected{% endif %}>
+            {{ receta.nombre }}
+          </option>
+        {% endfor %}
+      </select>
+    </div>
+    <button type="submit" class="btn btn-primary me-2">Actualizar Producto</button>
+    <a href="{% url 'ver_productos' %}" class="btn btn-secondary">Cancelar</a>
+  </form>
+</div>
+{% endblock %}

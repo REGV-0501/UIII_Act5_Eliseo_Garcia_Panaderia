@@ -1,0 +1,40 @@
+{% extends 'base.html' %}
+{% block title %}Agregar Ingrediente{% endblock %}
+{% block content %}
+<div class="card shadow-sm p-4">
+  <h2 class="card-title mb-4">Agregar Nuevo Ingrediente</h2>
+  <form method="post">
+    {% csrf_token %}
+    <div class="mb-3">
+      <label for="nombre" class="form-label">Nombre</label>
+      <input type="text" name="nombre" id="nombre" class="form-control" required>
+    </div>
+    <div class="mb-3">
+      <label for="descripcion" class="form-label">Descripción</label>
+      <textarea name="descripcion" id="descripcion" class="form-control"></textarea>
+    </div>
+    <div class="mb-3">
+      <label for="unidad_medida" class="form-label">Unidad de Medida</label>
+      <input type="text" name="unidad_medida" id="unidad_medida" class="form-control" required>
+    </div>
+    <div class="mb-3">
+      <label for="costo_unitario" class="form-label">Costo Unitario</label>
+      <input type="number" name="costo_unitario" id="costo_unitario" class="form-control" step="0.01" required>
+    </div>
+    <div class="mb-3">
+      <label for="proveedor" class="form-label">Proveedor</label>
+      <input type="text" name="proveedor" id="proveedor" class="form-control">
+    </div>
+    <div class="mb-3">
+      <label for="fecha_compra" class="form-label">Fecha de Compra</label>
+      <input type="date" name="fecha_compra" id="fecha_compra" class="form-control" required>
+    </div>
+    <div class="mb-3">
+      <label for="stock_disponible" class="form-label">Stock Disponible</label>
+      <input type="number" name="stock_disponible" id="stock_disponible" class="form-control" step="0.01" required>
+    </div>
+    <button type="submit" class="btn btn-primary me-2">Guardar Ingrediente</button>
+    <a href="{% url 'ver_ingredientes' %}" class="btn btn-secondary">Cancelar</a>
+  </form>
+</div>
+{% endblock %}

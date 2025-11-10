@@ -1,0 +1,44 @@
+<nav class="navbar navbar-expand-lg navbar-light bg-white shadow-sm">
+  <div class="container">
+    <a class="navbar-brand" href="{% url 'inicio_panaderia' %}">🍞 Sistema de Administración Panadería</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navMenu">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navMenu">
+      <ul class="navbar-nav ms-auto">
+        <li class="nav-item"><a class="nav-link" href="{% url 'inicio_panaderia' %}"><i class="bi bi-house-fill"></i> Inicio</a></li>
+
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" id="ingredientesDrop" role="button" data-bs-toggle="dropdown">
+            <i class="bi bi-egg-fried"></i> Ingredientes
+          </a>
+          <ul class="dropdown-menu" aria-labelledby="ingredientesDrop">
+            <li><a class="dropdown-item" href="{% url 'agregar_ingrediente' %}">Agregar Ingrediente</a></li>
+            <li><a class="dropdown-item" href="{% url 'ver_ingredientes' %}">Ver Ingredientes</a></li>
+          </ul>
+        </li>
+
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" id="recetasDrop" role="button" data-bs-toggle="dropdown">
+            <i class="bi bi-journal-text"></i> Recetas
+          </a>
+          <ul class="dropdown-menu" aria-labelledby="recetasDrop">
+            <li><a class="dropdown-item" href="{% url 'agregar_receta' %}">Agregar Receta</a></li>
+            <li><a class="dropdown-item" href="{% url 'ver_recetas' %}">Ver Recetas</a></li>
+          </ul>
+        </li>
+
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" id="productosDrop" role="button" data-bs-toggle="dropdown">
+            <i class="bi bi-bag"></i> Productos
+          </a>
+          <ul class="dropdown-menu" aria-labelledby="productosDrop">
+            <li><a class="dropdown-item" href="{% url 'agregar_producto' %}">Agregar Producto</a></li>
+            <li><a class="dropdown-item" href="{% url 'ver_productos' %}">Ver Productos</a></li>
+            <!-- Los enlaces de actualizar y borrar se manejarán en la tabla de ver_productos -->
+          </ul>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>

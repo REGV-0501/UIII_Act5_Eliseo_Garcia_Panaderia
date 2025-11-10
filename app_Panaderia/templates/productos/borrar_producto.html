@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+{% block title %}Borrar Producto{% endblock %}
+{% block content %}
+<div class="card shadow-sm p-4">
+  <h2 class="card-title mb-4">Confirmar Borrado de Producto</h2>
+  <div class="alert alert-warning" role="alert">
+    <p>¿Estás seguro de que deseas eliminar el producto <strong>{{ producto.nombre }}</strong> (Precio: ${{ producto.precio_venta }})?</p>
+    <p>¡Esta acción es irreversible!</p>
+  </div>
+  <form method="post">
+    {% csrf_token %}
+    <button type="submit" class="btn btn-danger me-2"><i class="bi bi-trash"></i> Sí, Eliminar</button>
+    <a href="{% url 'ver_productos' %}" class="btn btn-secondary"><i class="bi bi-x-circle"></i> Cancelar</a>
+  </form>
+</div>
+{% endblock %}

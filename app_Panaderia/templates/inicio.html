@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+{% block title %}Inicio - Panadería{% endblock %}
+{% block content %}
+<div class="row align-items-center">
+  <div class="col-md-7">
+    <h1 class="display-4">Bienvenido al sistema de administración de Panadería</h1>
+    <p class="lead">Gestiona tus ingredientes, recetas y productos de manera eficiente. Usa el menú superior para navegar por las diferentes secciones del sistema.</p>
+    <hr class="my-4">
+    <p>Empieza gestionando tus ingredientes para asegurar que siempre tengas lo necesario para tus deliciosas creaciones.</p>
+    <a href="{% url 'ver_ingredientes' %}" class="btn btn-primary btn-lg">Ver Ingredientes</a>
+  </div>
+  <div class="col-md-5">
+    <img src="https://png.pngtree.com/png-clipart/20241005/original/pngtree-bread-and-bakery-shop-baked-food-products-png-image_16202642.png" class="img-fluid rounded shadow-sm" alt="Panadería artesanal">
+  </div>
+</div>
+{% endblock %}
+(Imagen tomada desde la red — URL pública de Unsplash.)

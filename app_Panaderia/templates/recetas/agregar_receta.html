@@ -1,0 +1,43 @@
+{% extends 'base.html' %}
+{% block title %}Agregar Receta{% endblock %}
+{% block content %}
+<div class="card shadow-sm p-4">
+  <h2 class="card-title mb-4">Agregar Nueva Receta</h2>
+  <form method="post">
+    {% csrf_token %}
+    <div class="mb-3">
+      <label for="nombre" class="form-label">Nombre de la Receta</label>
+      <input type="text" name="nombre" id="nombre" class="form-control" required>
+    </div>
+    <div class="mb-3">
+      <label for="descripcion" class="form-label">Descripción</label>
+      <textarea name="descripcion" id="descripcion" class="form-control"></textarea>
+    </div>
+    <div class="mb-3">
+      <label for="tiempo_preparacion" class="form-label">Tiempo de Preparación (minutos)</label>
+      <input type="number" name="tiempo_preparacion" id="tiempo_preparacion" class="form-control" required>
+    </div>
+    <div class="mb-3">
+      <label for="fecha_creacion" class="form-label">Fecha de Creación</label>
+      <input type="date" name="fecha_creacion" id="fecha_creacion" class="form-control" required>
+    </div>
+    <div class="mb-3">
+      <label for="autor" class="form-label">Autor</label>
+      <input type="text" name="autor" id="autor" class="form-control" required>
+    </div>
+    <div class="mb-3">
+      <label for="ingredientes" class="form-label">Ingredientes</label>
+      <select multiple class="form-select" id="ingredientes" name="ingredientes">
+        {% for ingrediente in ingredientes_disponibles %}
+          <option value="{{ ingrediente.id }}">{{ ingrediente.nombre }} ({{ ingrediente.unidad_medida }})</option>
+        {% empty %}
+          <option value="" disabled>No hay ingredientes disponibles. Agrega algunos primero.</option>
+        {% endfor %}
+      </select>
+      <small class="form-text text-muted">Mantén Ctrl/Cmd presionado para seleccionar múltiples ingredientes.</small>
+    </div>
+    <button type="submit" class="btn btn-primary me-2">Guardar Receta</button>
+    <a href="{% url 'ver_recetas' %}" class="btn btn-secondary">Cancelar</a>
+  </form>
+</div>
+{% endblock %}
